@@ -8,6 +8,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "axios": "0.16.0",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.9.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "babel-plugin-react-transform": "^2.0.2",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-2": "^6.24.1",
     "react-transform-hmr": "^1.0.4"
   }
 }
