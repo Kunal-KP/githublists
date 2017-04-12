@@ -4,7 +4,7 @@ require('../../scss/style.scss');
 
 const MyApp = () => (
     <div>
-        <h1><u>Most Starred Github Repos:</u></h1>
+        <h1 className="align shadow"><u>Most Starred Github Repos:</u></h1>
         <StarredList/>
     </div>
 );

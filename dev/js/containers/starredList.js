@@ -3,6 +3,7 @@ import axios from 'axios';
 import {starredRepo} from '../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { Draggable, Droppable } from 'react-drag-and-drop'
 
  class StarredList extends React.Component{
 
@@ -10,42 +11,48 @@ import {bindActionCreators} from 'redux';
         console.log("Inside componentDidMount()");
         {this.props.starredRepo()}
     }
-    /*drag(ev){
-        console.log(ev.target.id);
-        ev.dataTransfer.setData("text",ev.target.id);
-    }
-    drop(ev){
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-    }
-    allowDrop(ev){
-        ev.preventDefault();
-    }*/
 
     showList(){
         return this.props.starList.map((obj) => {
             return (
-                <tr key={obj.id} id={obj.id} draggable="true">
-                    <td className="align">{obj.id}</td>
-                    <td className="align">{obj.name}</td>
-                    <td className="align">{obj.stargazers_count}</td>
-                </tr>
+                    <tr key={obj.id} id={obj.id}  >
+                        <td className="align">{obj.id}</td>
+                        <Draggable type="repos" data={obj.name}>
+                        <td className="align">{obj.name}</td>
+                        </Draggable>
+                        <td className="align">{obj.stargazers_count}</td>
+                    </tr>
             );
         });
     }
+        onDrop(data){
+                console.log("Hiiii "+data.repos);
+                if(sessionStorage.dat == null){
+                    console.log("NULL")
+                    var arr=[];
+                    arr.push(data.repos);
+                    sessionStorage.dat=JSON.stringify(arr);
+                    document.getElementById("repo_List").innerHTML+="<li><h3 class='color-adj'>"+data.repos+"</h3></li>";
+                }
+                else{
+                    arr=JSON.parse(sessionStorage.dat);
+                    arr.push(data.repos);
+                    sessionStorage.dat=JSON.stringify(arr);
+                    document.getElementById("repo_List").innerHTML+="<li><h3 class='color-adj'>"+data.repos+"</h3></li>";
+                }
+            }
 
     render(){
         if(!this.props.starList){
             return (
-               <div><img src="gears.gif"/></div>
+               <div className="align"><img src="gears.gif"/></div>
             )
         }
         return (
             <div>
                 <div className="left-div">
                     <h3>
-                        <table>
+                        <table className="table-shadow">
                             <thead>
                                 <tr>
                                     <th className="align">ID:</th>
@@ -59,14 +66,20 @@ import {bindActionCreators} from 'redux';
                         </table>
                     </h3>
                 </div>
+
                 <div className="right-div">
-                    <div id="inner"></div>
+                    <h2 className="align shadow"><u>My Favourite Repos</u></h2>
+                    <Droppable types={['repos']} className="drop-div"  onDrop={this.onDrop.bind(this)}>
+                        <ul id="repo_List"></ul>
+                    </Droppable>
                 </div>
 
             </div>
 
         )
     }
+
+
 }
 function matchDispatchToProps(dispatch){
         console.log("blabla");

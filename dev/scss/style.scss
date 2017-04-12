@@ -1,7 +1,10 @@
 $primary: #006699;
 
-h1, h3 {
+h1, h3, h4 {
 	color: $primary;
+}
+h2  {
+    color:white;
 }
 .align  {
     text-align: center;
@@ -20,19 +23,41 @@ tr:nth-child(even){background-color: #b3b3b3}
 tr:hover{background-color:#cce6ff}
 
 th {
-    background-color: #4CAF50;
+    background-color: #4CAF7C;
     color: white;
 }
 .right-div  {
-    width: 500px;
+    width: 385px;
     height: 500px;
-    background-color: cyan;
+    background-color: #4caf7c;
     float: left;
     margin-left: 250px;
     margin-top: 50px;
     border: 1px solid black;
-    box-shadow: -10px 10px 10px #888888;
+    box-shadow: 10px -10px 20px #888888;
 }
 .left-div   {
     float:left;
+
+     margin-left: 100px;
+}
+.drop-div   {
+    height: 415px;
+    background-color:#4caf7c;
+    overflow: hidden;
+}
+td  {
+    text-align:center
+}
+div>.align  {
+    text-align: center;
+}
+.shadow {
+    text-shadow: 1px 1px 4px grey
+}
+.table-shadow   {
+    box-shadow: 10px -10px 20px #888888;
+}
+.color-adj{
+    color: white !important;
 }
